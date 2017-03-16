@@ -21,11 +21,10 @@ public class Engine extends Canvas implements Runnable{
 	public boolean running = false;
 	public Thread thread;
 	
-	private static double cap = 30D;
-	
+	private static double cap = 60D;
 	
 	protected int width = 640, height = 480;
-	protected BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	protected BufferedImage image = new BufferedImage(320, 240, BufferedImage.TYPE_INT_RGB);
 	protected int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	
 	public static Screen Render;
@@ -45,7 +44,7 @@ public class Engine extends Canvas implements Runnable{
 	}
 	
 	public void init() {
-		Render = new Screen(width, height);
+		Render = new Screen(320, 240);
 		
 		parent.init();
 	}
@@ -91,7 +90,7 @@ public class Engine extends Canvas implements Runnable{
 		parent.render();
 		Render.process();
 		
-		for(int i = 0; i < Render.pixels.length; i++) {
+		for(int i = 0; i < Render.getWidth()*Render.getHeight(); i++) {
 			pixels[i] = Render.pixels[i];
 		}
 

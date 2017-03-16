@@ -8,10 +8,11 @@ import net.overrtimestudios.core.Mouse;
 import net.overrtimestudios.core.Parent;
 import net.overrtimestudios.core.graphics.Light;
 import net.overrtimestudios.core.graphics.Texture;
+import net.overrtimestudios.core.utils.Window;
 
 public class Test extends Parent{
-	private Light light = new Light(120, 0xffffffff);
-	private Light l = new Light(120, 0xff00ffff);
+	private Light light = new Light(50, 0xffffffff);
+	private Light l = new Light(50, 0xff00ffff);
 	
 	public Test(int width, int height) {
 		super(width, height);
@@ -23,7 +24,7 @@ public class Test extends Parent{
 		Texture t1 = new Texture("bg", 0, false);
 		registerTexture(t1);
 		
-		Texture t = new Texture("test", 1, true);
+		Texture t = new Texture("test", 1, false);
 		t.setLightBlock(Light.TOTAL);
 		registerTexture(t);
 	}
@@ -45,12 +46,19 @@ public class Test extends Parent{
 		Engine.Render().drawLight(l, time, 30);
 		
 		Engine.Render().drawTexture(requestTexture(0), 0, 0);
-		Engine.Render().drawTexture(requestTexture(1), 300, 300);			
+		Engine.Render().drawTexture(requestTexture(1), 200, 200);			
 
 	}
 	
 	public void dispose() {
 		
+	}
+	
+	public static void main(String[] args) {
+		Engine e = new Engine(new Test(800, 600));
+		Window w = new Window("Test", 640, 480);
+		w.initFrame(e);
+		e.start();
 	}
 	
 }

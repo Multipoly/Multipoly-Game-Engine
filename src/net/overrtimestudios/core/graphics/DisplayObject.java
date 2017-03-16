@@ -284,6 +284,7 @@ public class DisplayObject {
 		lightRequest.clear();
 		processing = false;
 	}
+	
 
 	public int getzDepth() {
 		return zDepth;
